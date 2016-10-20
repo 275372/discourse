@@ -64,9 +64,7 @@ export default Ember.View.extend({
       onSelectionChanged();
     });
 
-    // Android is dodgy, touchend often will not fire
-    // https://code.google.com/p/android/issues/detail?id=19827
-    if (!isAndroid) {
+    if (!this.site.isMobileDevice) {
       $(document)
         .on('touchstart.quote-button', () => this.set('isTouchInProgress', true))
         .on('touchend.quote-button', () => this.set('isTouchInProgress', false));
